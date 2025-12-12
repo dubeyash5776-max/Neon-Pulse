@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neon Pulse - Photo Gallery</title>
+
+  <style>
+    :root{
+      --bg-1: #000;
+      --bg-2: #581c87;
+      --accent: #a78bfa;
+      --muted: #bdbdbd;
+      --max-w: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#fff;
+      background: linear-gradient(180deg,var(--bg-1), var(--bg-2), var(--bg-1));
+    }
+
+    /* NAVBAR */
+    .nav {
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:40;
+      padding:14px 20px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(167,139,250,0.15);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .brand{
+      font-weight:900;
+      letter-spacing:1px;
+      font-size:20px;
+      text-shadow:0 0 12px rgba(167,139,250,0.25);
+      color:#fff;
+      text-decoration:none;
+    }
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .nav-links a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:13px;
+      padding:6px 8px;
+      border-radius:6px;
+    }
+    .nav-links a.active{
+      color:var(--accent);
+      border-bottom:2px solid var(--accent);
+    }
+
+    /* PAGE CONTENT */
+    .wrap{
+      max-width:var(--max-w);
+      margin:110px auto 80px;
+      padding:20px;
+    }
+
+    h1.page-title{
+      text-align:center;
+      font-size:36px;
+      margin:10px 0 34px;
+      text-shadow:0 0 18px rgba(167,139,250,0.25);
+    }
+
+    .section-title{
+      font-size:22px;
+      text-align:center;
+      margin:42px 0 18px;
+      text-shadow:0 0 10px rgba(0,0,0,0.6);
+    }
+
+    /* SCROLLABLE PHOTO SECTION */
+    .scroll {
+      display:flex;
+      gap:18px;
+      padding:18px;
+      overflow-x:auto;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+      scroll-behavior:smooth;
+    }
+    .scroll::-webkit-scrollbar{height:10px}
+    .scroll::-webkit-scrollbar-track{background: rgba(255,255,255,0.02); border-radius:10px}
+    .scroll::-webkit-scrollbar-thumb{background:linear-gradient(135deg,#667eea,#764ba2); border-radius:10px}
+
+    /* PHOTO CARD */
+    .card{
+      min-width:260px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.6);
+      transition: transform .18s ease, box-shadow .18s ease;
+      cursor:pointer;
+      text-decoration:none;
+      color:inherit;
+      display:block;
+      flex-shrink:0;
+    }
+    .card:hover{
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.7);
+    }
+    .thumb{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      display:block;
+      background:#111;
+    }
+    .card .meta{
+      padding:12px 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
+    }
+    .card h4{ margin:0 0 6px; font-size:16px; color:#fff }
+    .card p{ margin:0; color:var(--muted); font-size:13px }
+
+    @media (max-width:740px){
+      .thumb{ height:140px }
+      .card{ min-width:220px }
+      .wrap{ margin-top:88px }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a class="brand" href="#">NEON PULSE</a>
+    <nav class="nav-links">
+      <a href="#">HOME</a>
+      <a href="#">MUSIC</a>
+      <a href="#">TOUR</a>
+      <a href="#" class="active">GALLERY</a>
+    </nav>
+  </header>
+
+  <!-- PAGE -->
+  <main class="wrap">
+    <h1 class="page-title">MEDIA GALLERY</h1>
+
+    <!-- PHOTOS ONLY -->
+    <h2 class="section-title">📷 PHOTOS</h2>
+    <div class="scroll">
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800" alt="Live at Electric Theater">
+        <div class="meta">
+          <h4>Live at Electric Theater</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800" alt="Studio Session">
+        <div class="meta">
+          <h4>Studio Session</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live Show Energy 1">
+        <div class="meta">
+          <h4>Live Show Energy 1</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?w=800" alt="Live Show Energy 2">
+        <div class="meta">
+          <h4>Live Show Energy 2</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://th.bing.com/th/id/OIP.lR93c0M0J390AqSRcGTV6AHaGP?w=300&h=300&c=7&r=0&o=5&pid=1.7" alt="Arijit Singh">
+        <div class="meta">
+          <h4>Arijit Singh</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

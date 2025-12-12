@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Pulse - One Page Site</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --bg-1: #000;
+      --bg-2: #581c87;
+      --accent: #a78bfa;
+      --muted: #bdbdbd;
+      --max-w: 1200px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .animate-pulse-custom {
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(to bottom, #000000, #581c87, #000000);
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    .active-link {
+      border-bottom: 2px solid #a78bfa;
+      color: #a78bfa !important;
+    }
+
+    .page-section {
+      display: none;
+    }
+    .page-section.active-section {
+      display: block;
+    }
+
+    /* MUSIC PAGE STYLES */
+    .music-container {
+      max-width: 700px;
+      margin: 120px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .track-box {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 20px;
+      border: 1px solid rgba(167, 139, 250, 0.3);
+    }
+    .track-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .track-duration {
+      color: #c4b5fd;
+      margin-bottom: 10px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    /* Special styling for Radioactive track */
+    .radioactive-box {
+      background: linear-gradient(to right, #b00000, #3a3a3a);
+      border: 1px solid #ff4d4d;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+    }
+    .radioactive-box .track-title {
+      color: #ff8080;
+    }
+    .radioactive-box .track-duration {
+      color: #e6e6e6;
+    }
+    /* Special styling for Stay track */
+    .Stay-box {
+      background: linear-gradient(to right, #002cb0, #3a3a3a);
+      border: 1px solid #4d9aff;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0);
+    }
+    .Stay-box .track-title {
+      color: #8095ff;
+    }
+    .Stay-box .track-duration {
+      color: #e6e6e6;
+    }
+    /* Track: Aaj Blue Hai Pani */
+.aaj-box {
+  background: linear-gradient(to right, #006eff, #5b00a8);
+  border: 1px solid #4da1ff;
+  box-shadow: 0 0 25px rgba(0, 153, 255, 0.3);
+}
+.aaj-box .track-title { color: #a7d8ff; }
+.aaj-box .track-duration { color: #e6e6ff; }
+
+/* Track: Zero Gravity Love */
+.gravity-box {
+  background: linear-gradient(to right, #ff00aa, #5500ff);
+  border: 1px solid #ff4df9;
+  box-shadow: 0 0 25px rgba(255, 0, 187, 0.3);
+}
+.gravity-box .track-title { color: #ffb3f7; }
+.gravity-box .track-duration { color: #f5e6ff; }
+
+/* Track: Hidden Bonus Track */
+.bonus-box {
+  background: linear-gradient(to right, #ffa600, #7a00ff);
+  border: 1px solid #ffbf4d;
+  box-shadow: 0 0 25px rgba(255, 153, 0, 0.3);
+}
+.bonus-box .track-title { color: #ffe0b3; }
+.bonus-box .track-duration { color: #f8ebff; }
+
+    /* GALLERY STYLES */
+    .wrap{
+      max-width:var(--max-w);
+      margin:110px auto 80px;
+      padding:20px;
+    }
+    h1.page-title{
+      text-align:center;
+      font-size:36px;
+      margin:10px 0 34px;
+      text-shadow:0 0 18px rgba(167,139,250,0.25);
+    }
+    .section-title{
+      font-size:22px;
+      text-align:center;
+      margin:42px 0 18px;
+      text-shadow:0 0 10px rgba(0,0,0,0.6);
+    }
+    .scroll {
+      display:flex;
+      gap:18px;
+      padding:18px;
+      overflow-x:auto;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+      scroll-behavior:smooth;
+    }
+    .scroll::-webkit-scrollbar{height:10px}
+    .scroll::-webkit-scrollbar-track{background: rgba(255,255,255,0.02); border-radius:10px}
+    .scroll::-webkit-scrollbar-thumb{background:linear-gradient(135deg,#667eea,#764ba2); border-radius:10px}
+    .card{
+      min-width:260px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.6);
+      transition: transform .18s ease, box-shadow .18s ease;
+      cursor:pointer;
+      text-decoration:none;
+      color:inherit;
+      display:block;
+      flex-shrink:0;
+    }
+    .card:hover{
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.7);
+    }
+    .thumb{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      display:block;
+      background:#111;
+    }
+    .card .meta{
+      padding:12px 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
+    }
+    .card h4{ margin:0 0 6px; font-size:16px; color:#fff }
+    .card p{ margin:0; color:var(--muted); font-size:13px }
+
+    @media (max-width:740px){
+      .thumb{ height:140px }
+      .card{ min-width:220px }
+      .wrap{ margin-top:88px }
+    }
+  </style>
+</head>
+
+<body class="text-white">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full bg-black bg-opacity-50 backdrop-blur-lg border-b border-purple-500 border-opacity-30 z-40">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-3xl font-black text-white cursor-pointer" style="text-shadow: 0 0 20px rgba(147,51,234,0.6)">
+      NEON PULSE
+    </div>
+    
+    <div class="hidden md:flex gap-8">
+      <a href="#" data-section="home"         class="nav-link text-lg font-bold uppercase transition-colors text-purple-400 active-link">HOME</a>
+      <a href="#" data-section="music"        class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">MUSIC</a>
+      <a href="#" data-section="tour-store"   class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">TOUR &amp; STORE</a>
+      <a href="#" data-section="gallery"      class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">GALLERY</a>
+    </div>
+
+    <button onclick="toggleMobileMenu()" class="md:hidden text-white">
+      <span id="menuIcon">☰</span>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden bg-black bg-opacity-95 border-t border-purple-500 border-opacity-30">
+    <a href="#" data-section="home"         class="nav-link block w-full text-left px-4 py-4 text-purple-400 bg-purple-900 bg-opacity-30 uppercase font-bold">HOME</a>
+    <a href="#" data-section="music"        class="nav-link block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">MUSIC</a>
+    <a href="#" data-section="tour-store"   class="nav-link block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">TOUR &amp; STORE</a>
+    <a href="#" data-section="gallery"      class="nav-link block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">GALLERY</a>
+  </div>
+</nav>
+
+<!-- ========== SECTIONS ========== -->
+
+<!-- HOME -->
+<section id="home" class="page-section active-section pt-20">
+  <div class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-black opacity-90"></div>
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-6xl md:text-8xl font-black text-white mb-6 animate-pulse-custom"
+          style="text-shadow: 0 0 40px rgba(147,51,234,0.8), 0 0 80px rgba(59,130,246,0.5)">
+        NEON PULSE
+      </h1>
+      <p class="text-xl md:text-2xl text-purple-300 mb-8 tracking-widest">ELECTRO • SYNTH • WAVE</p>
+      <button onclick="switchSection('music')"
+              class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-12 py-4 rounded-full text-xl font-bold hover:scale-110 transition-transform shadow-lg inline-block">
+        LISTEN NOW
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music" class="page-section pt-20">
+  <div class="music-container">
+    <h1 style="font-size: 40px; font-weight: 900; margin-bottom: 30px;">MUSIC PLAYER</h1>
+
+    <!-- Track 1 -->
+    <div class="track-box radioactive-box">
+      <div class="track-title">Radioactive</div>
+      <div class="track-duration">00:29</div>
+      <audio controls>
+        <source src="RADIOACTIVE.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Track 2 -->
+    <div class="track-box Stay-box">
+      <div class="track-title">Stay</div>
+      <div class="track-duration">2:21</div>
+      <audio controls>
+        <source src="STAY.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Track 3 -->
+    <div class="track-box aaj-box">
+      <div class="track-title">Aaj Blue Hai Pani</div>
+      <div class="track-duration">3:32</div>
+      <audio controls>
+        <source src="Aaj Blue Hai Pani Pani.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Track 4 -->
+    <div class="track-box gravity-box">
+      <div class="track-title">Bulleya</div>
+      <div class="track-duration">5:48</div>
+      <audio controls>
+        <source src="Bulleya.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Track 5 -->
+    <div class="track-box bonus-box">
+      <div class="track-title">Hidden Bonus Track</div>
+      <div class="track-duration">2:10</div>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+</section>
+
+<!-- TOUR & STORE (MERGED, HTML + CSS ONLY) -->
+<section id="tour-store" class="page-section pt-20">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+
+    <!-- TOUR PART -->
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-8 text-center">TOUR DATES</h2>
+    <div class="space-y-6 mb-12">
+
+      <!-- Card 1 -->
+      <div class="bg-gradient-to-r from-purple-900/40 to-blue-900/40 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-6 flex-1">
+            <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-4 min-w-24 text-center">
+              <p class="text-4xl mb-2">📅</p>
+              <p class="text-white font-bold text-sm">Dec 15, 2025</p>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2">The Electric Theater</h3>
+              <div class="flex items-center gap-2 text-purple-300">
+                <span>📍</span>
+                <p class="text-base md:text-lg">Los Angeles, CA</p>
+              </div>
+            </div>
+          </div>
+          <button class="px-8 py-3 rounded-full font-bold text-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:scale-105 transition-all">
+            GET TICKETS
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gradient-to-r from-purple-900/40 to-blue-900/40 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-6 flex-1">
+            <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-4 min-w-24 text-center">
+              <p class="text-4xl mb-2">📅</p>
+              <p class="text-white font-bold text-sm">Dec 22, 2025</p>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Starlight Arena</h3>
+              <div class="flex items-center gap-2 text-purple-300">
+                <span>📍</span>
+                <p class="text-base md:text-lg">New York, NY</p>
+              </div>
+            </div>
+          </div>
+          <button class="px-8 py-3 rounded-full font-bold text-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:scale-105 transition-all">
+            GET TICKETS
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-gradient-to-r from-purple-900/40 to-blue-900/40 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-6 flex-1">
+            <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-4 min-w-24 text-center">
+              <p class="text-4xl mb-2">📅</p>
+              <p class="text-white font-bold text-sm">Jan 05, 2026</p>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Velocity Club</h3>
+              <div class="flex items-center gap-2 text-purple-300">
+                <span>📍</span>
+                <p class="text-base md:text-lg">Chicago, IL</p>
+              </div>
+            </div>
+          </div>
+          <button class="px-8 py-3 rounded-full font-bold text-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:scale-105 transition-all">
+            LIMITED
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-gradient-to-r from-purple-900/40 to-blue-900/40 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-6 flex-1">
+            <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-4 min-w-24 text-center">
+              <p class="text-4xl mb-2">📅</p>
+              <p class="text-white font-bold text-sm">Jan 12, 2026</p>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Aurora Hall</h3>
+              <div class="flex items-center gap-2 text-purple-300">
+                <span>📍</span>
+                <p class="text-base md:text-lg">Austin, TX</p>
+              </div>
+            </div>
+          </div>
+          <button class="px-8 py-3 rounded-full font-bold text-lg bg-gray-600 text-gray-300 cursor-not-allowed">
+            SOLD OUT
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STORE PART -->
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl md:text-5xl font-black text-white">MERCH STORE</h2>
+      <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-full px-6 py-3 flex items-center gap-2">
+        <span>🛒</span>
+        <!-- Static count text, no JS logic -->
+        <span class="text-white font-bold text-xl">CART</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Item 1 -->
+      <div class="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-lg rounded-3xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <img src="https://plus.unsplash.com/premium_photo-1718913936342-eaafff98834b?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Tour T-Shirt</h3>
+        <p class="text-3xl font-black text-purple-300 mb-4">$29.99</p>
+        <button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-full font-bold hover:scale-105 transition-transform">
+          ADD TO CART
+        </button>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-lg rounded-3xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <img src="https://plus.unsplash.com/premium_photo-1682125488670-29e72e5a7672?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-48 object-cover rounded-xl mb-4">
+
+        <h3 class="text-xl font-bold text-white mb-2">Vinyl Album</h3>
+        <p class="text-3xl font-black text-purple-300 mb-4">$34.99</p>
+        <button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-full font-bold hover:scale-105 transition-transform">
+          ADD TO CART
+        </button>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-lg rounded-3xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <img src="https://imgs.search.brave.com/OR4mmDASovHqRWWePnKq4VE3X3yJOtjS7i65lRVq_Xk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFOYmtSZnFEUUwu/anBn" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Band Hoodie</h3>
+        <p class="text-3xl font-black text-purple-300 mb-4">$54.99</p>
+        <button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-full font-bold hover:scale-105 transition-transform">
+          ADD TO CART
+        </button>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-lg rounded-3xl p-6 border border-purple-500/40 hover:border-purple-500/80 transition-all hover:scale-105">
+        <img src="https://imgs.search.brave.com/Jn0UylTX_tAQqnqDykXr5fjlyIW7mVCM0pLwwAnTKts/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/MjAyMS1tdXNpYy1l/dmVudC1wb3N0ZXIt/dGVtcGxhdGUtdGhl/bWVfMjMtMjE0ODU4/OTM3NS5qcGc_c2Vt/dD1haXNfaHlicmlk/Jnc9NzQwJnE9ODA" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Poster Set</h3>
+        <p class="text-3xl font-black text-purple-300 mb-4">$19.99</p>
+        <button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-full font-bold hover:scale-105 transition-transform">
+          ADD TO CART
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="page-section pt-20">
+  <main class="wrap">
+    <h1 class="page-title">MEDIA GALLERY</h1>
+
+    <h2 class="section-title">📷 PHOTOS</h2>
+    <div class="scroll">
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800" alt="Live at Electric Theater">
+        <div class="meta">
+          <h4>Live at Electric Theater</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800" alt="Studio Session">
+        <div class="meta">
+          <h4>Studio Session</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live Show Energy 1">
+        <div class="meta">
+          <h4>Live Show Energy 1</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?w=800" alt="Live Show Energy 2">
+        <div class="meta">
+          <h4>Live Show Energy 2</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="https://th.bing.com/th/id/OIP.lR93c0M0J390AqSRcGTV6AHaGP?w=300&h=300&c=7&r=0&o=5&pid=1.7" alt="Arijit Singh">
+        <div class="meta">
+          <h4>Arijit Singh</h4>
+          <p>Photo</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- JS: tab switching + mobile menu (tour/store content is pure HTML+CSS) -->
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const icon = document.getElementById('menuIcon');
+    menu.classList.toggle('hidden');
+    icon.textContent = menu.classList.contains('hidden') ? '☰' : '✕';
+  }
+
+  function switchSection(sectionId) {
+    // sections
+    document.querySelectorAll('.page-section').forEach(sec => {
+      sec.classList.remove('active-section');
+    });
+    document.getElementById(sectionId).classList.add('active-section');
+
+    // nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.dataset.section === sectionId) {
+        link.classList.add('active-link');
+        link.classList.remove('text-white');
+      } else {
+        link.classList.remove('active-link');
+        link.classList.add('text-white');
+      }
+    });
+
+    // close mobile menu if open
+    const menu = document.getElementById('mobileMenu');
+    const icon = document.getElementById('menuIcon');
+    if (menu && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      icon.textContent = '☰';
+    }
+  }
+
+  // attach click events
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const section = link.dataset.section;
+      if (section) switchSection(section);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Neon Pulse - Music</title>
+
+<style>
+  :root{
+    --bg-1: #000000;
+    --bg-2: #581c87;
+    --accent: #a78bfa;
+    --muted: #bdbdbd;
+    --max-w: 1200px;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* Neon gradient background (same as your one-page site) */
+    background: linear-gradient(to bottom, var(--bg-1), var(--bg-2), var(--bg-1));
+    min-height: 100vh;
+    color: white;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+  }
+
+  .active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  /* Page Layout */
+  .container {
+    max-width: 700px;
+    margin: 120px auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .track-box {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+  }
+
+  .track-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .track-duration {
+    color: #c4b5fd;
+    margin-bottom: 10px;
+  }
+
+  audio {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Special styling for Radioactive track */
+  .radioactive-box {
+    background: linear-gradient(to right, #b00000, #3a3a3a);
+    border: 1px solid #ff4d4d;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.18);
+  }
+  .radioactive-box .track-title { color: #ff8080; }
+  .radioactive-box .track-duration { color: #e6e6e6; }
+
+  /* Special styling for Stay track */
+  .stay-box {
+    background: linear-gradient(to right, #002cb0, #3a3a3a);
+    border: 1px solid #4d9aff;
+    box-shadow: 0 0 18px rgba(77,154,255,0.12);
+  }
+  .stay-box .track-title { color: #8095ff; }
+  .stay-box .track-duration { color: #e6e6e6; }
+
+  /* Track: Aaj Blue Hai Pani */
+  .aaj-box {
+    background: linear-gradient(to right, #006eff, #5b00a8);
+    border: 1px solid #4da1ff;
+    box-shadow: 0 0 25px rgba(0, 153, 255, 0.12);
+  }
+  .aaj-box .track-title { color: #a7d8ff; }
+  .aaj-box .track-duration { color: #e6e6ff; }
+
+  /* Track: Zero Gravity Love */
+  .gravity-box {
+    background: linear-gradient(to right, #ff00aa, #5500ff);
+    border: 1px solid #ff4df9;
+    box-shadow: 0 0 25px rgba(255, 0, 187, 0.12);
+  }
+  .gravity-box .track-title { color: #ffb3f7; }
+  .gravity-box .track-duration { color: #f5e6ff; }
+
+  /* Track: Hidden Bonus Track */
+  .bonus-box {
+    background: linear-gradient(to right, #ffa600, #7a00ff);
+    border: 1px solid #ffbf4d;
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.12);
+  }
+  .bonus-box .track-title { color: #ffe0b3; }
+  .bonus-box .track-duration { color: #f8ebff; }
+
+  /* responsive tweak */
+  @media (max-width: 600px) {
+    .container { margin: 100px 16px; }
+    nav { padding: 12px 18px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION BAR -->
+<nav>
+    <div class="logo" style="font-size: 28px; font-weight: 900; text-shadow: 0 0 15px rgba(147,51,234,0.7);">
+        NEON PULSE
+    </div>
+
+    <div>
+        <a href="index.html">HOME</a>
+        <a href="music.html" class="active">MUSIC</a>
+        <a href="tour.html">TOUR</a>
+        <a href="store.html">STORE</a>
+        <a href="gallery.html">GALLERY</a>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="container">
+    <h1 style="font-size: 40px; font-weight: 900; margin-bottom: 30px;">MUSIC PLAYER</h1>
+
+    <!-- Track 1 -->
+    <div class="track-box radioactive-box">
+        <div class="track-title">Radioactive</div>
+        <div class="track-duration">00:29</div>
+
+        <audio controls>
+            <source src="RADIOACTIVE.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Track 2 -->
+    <div class="track-box stay-box">
+        <div class="track-title">Stay</div>
+        <div class="track-duration">2:21</div>
+
+        <audio controls>
+            <source src="STAY.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Track 3 -->
+    <div class="track-box aaj-box">
+        <div class="track-title">Aaj Blue Hai Pani</div>
+        <div class="track-duration">3:32</div>
+
+        <audio controls>
+            <source src="Aaj Blue Hai Pani Pani.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Track 4 -->
+    <div class="track-box gravity-box">
+        <div class="track-title">Zero Gravity Love</div>
+        <div class="track-duration">3:59</div>
+
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Track 5 -->
+    <div class="track-box bonus-box">
+        <div class="track-title">Hidden Bonus Track</div>
+        <div class="track-duration">2:10</div>
+
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+</div>
+
+</body>
+</html>

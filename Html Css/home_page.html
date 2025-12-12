@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Pulse - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-custom {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        body {
+            background: linear-gradient(to bottom, #000000, #581c87, #000000);
+            min-height: 100vh;
+        }
+        .active-link {
+            border-bottom: 2px solid #a78bfa; /* purple-400 */
+        }
+    </style>
+</head>
+<body class="text-white">
+    <nav class="fixed top-0 w-full bg-black bg-opacity-50 backdrop-blur-lg border-b border-purple-500 border-opacity-30 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-black text-white cursor-pointer hover:text-purple-400 transition-colors" style="text-shadow: 0 0 20px rgba(147,51,234,0.6)">
+                NEON PULSE
+            </a>
+            
+            <div class="hidden md:flex gap-8">
+                <a href="index.html" class="nav-link text-lg font-bold uppercase transition-colors text-purple-400 active-link">HOME</a>
+                <a href="music.html" class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">MUSIC</a>
+                <a href="tour.html" class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">TOUR</a>
+                <a href="store.html" class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">STORE</a>
+                <a href="gallery.html" class="nav-link text-lg font-bold uppercase transition-colors text-white hover:text-purple-400">GALLERY</a>
+            </div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white">
+                <span id="menuIcon">☰</span>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-black bg-opacity-95 border-t border-purple-500 border-opacity-30">
+            <a href="index.html" class="block w-full text-left px-4 py-4 text-purple-400 bg-purple-900 bg-opacity-30 uppercase font-bold">HOME</a>
+            <a href="music.html" class="block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">MUSIC</a>
+            <a href="tour.html" class="block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">TOUR</a>
+            <a href="store.html" class="block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">STORE</a>
+            <a href="gallery.html" class="block w-full text-left px-4 py-4 text-white hover:bg-purple-900 hover:bg-opacity-30 uppercase font-bold">GALLERY</a>
+        </div>
+    </nav>
+
+    <div class="pt-20">
+        <div class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-black opacity-90"></div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-6xl md:text-8xl font-black text-white mb-6 animate-pulse-custom" style="text-shadow: 0 0 40px rgba(147,51,234,0.8), 0 0 80px rgba(59,130,246,0.5)">
+                    NEON PULSE
+                </h1>
+                <p class="text-xl md:text-2xl text-purple-300 mb-8 tracking-widest">ELECTRO • SYNTH • WAVE</p>
+                <a href="music.html" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-12 py-4 rounded-full text-xl font-bold hover:scale-110 transition-transform shadow-lg inline-block">
+                    LISTEN NOW
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Only JavaScript remaining: Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            icon.textContent = menu.classList.contains('hidden') ? '☰' : '✕';
+        }
+    </script>
+</body>
+</html>
